@@ -25,13 +25,13 @@ function calculateBonusByProfit(index, total, seller) {
     // @TODO: Расчет бонуса от позиции в рейтинге
     const { profit } = seller;
     if (index === 0) {
-        return 0.15;                  // Первое место (наибольшая прибыль) — 15%
+        return seller.profit * 0.15;
     } else if (index === 1 || index === 2) {
-        return 0.10;           // Второе и третье место — 10%
+        return seller.profit * 0.10;
     } else if (index === total - 1) {
-        return 0;      // Последнее место — 0%
+        return 0;
     } else {
-        return 0.05;   // Все остальные продавцы — 5%
+        return seller.profit * 0.05;
     }
 }
 
@@ -50,9 +50,9 @@ function analyzeSalesData(data, options) {      //Объявление функ�
     // @TODO: Сортировка продавцов по прибыли
     // @TODO: Назначение премий на основе ранжирования
     // @TODO: Подготовка итоговой коллекции с нужными полями
-    
+
     //Проверка продавцов
-    if (!data || !Array.isArray(data.sellers) || data.sellers.length === 0) { 
+    if (!data || !Array.isArray(data.sellers) || data.sellers.length === 0) {
         throw new Error('Некорректные входные данные о продавцах');
     }
     //Проверка товаров
